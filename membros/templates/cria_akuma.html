@@ -1,0 +1,23 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block content%}
+<!-- Preloader -->
+    <div id="preloader">
+        <i class="circle-preloader"></i>
+        <img src="{% static 'img/core-img/hamburger.png' %}" alt="">
+    </div>
+
+
+    {%include 'partials/menu.html'%}
+
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <table>
+            {{ formset.as_table }}
+        </table>
+        <input type="submit" value="Submit">
+    </form>
+
+    {% include 'partials/footer.html'%}
+
+{% endblock %}

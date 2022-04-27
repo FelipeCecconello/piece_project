@@ -1,0 +1,50 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block content%}
+    <!-- Preloader -->
+    <div id="preloader">
+        <i class="circle-preloader"></i>
+        <img src="{% static 'img/core-img/hamburger.png' %}" alt="">
+    </div>
+
+
+    {%include 'partials/menu.html'%}
+
+
+    <div class="receipe-post-area section-padding-80">
+
+        <!-- Receipe Slider -->
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="receipe-slider owl-carousel">
+                        {% if bando.foto_bando == null%}
+                            <img src="{% static 'img/bg-img/tomate_banner.jpg' %}">
+                        {% else %}
+                            <img src="{{bando.foto_bando.url}}" alt="">
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Receipe Content Area -->
+        <div class="receipe-content-area">
+            <div class="container">
+
+                <div class="row">
+                    <div class="col-12 col-md-8">
+                        <div class="receipe-headline my-5">
+                            <h2>{{bando.nome_bando}}</h2>
+                            <div class="receipe-duration">
+                                <h6>Quantidade de membros: {{bando.quantidade_membros}}</h6>
+                            </div>
+                            </br>
+                            <a href="{% url 'deleta_bando' bando.id %}" class="btn btn-primary">Deletar</a>
+                            <a href="{% url 'edita_bando' bando.id %}" class="btn btn-primary">Editar</a>
+                        </div>
+                    </div>
+
+        {% include 'partials/footer.html'%}
+
+    {% endblock %}

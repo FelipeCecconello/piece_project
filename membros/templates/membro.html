@@ -1,0 +1,55 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block content%}
+    <!-- Preloader -->
+<div id="preloader" xmlns="http://www.w3.org/1999/html">
+        <i class="circle-preloader"></i>
+        <img src="{% static 'img/core-img/hamburger.png' %}" alt="">
+    </div>
+
+
+    {%include 'partials/menu.html'%}
+
+
+    <div class="receipe-post-area section-padding-80">
+
+        <!-- Receipe Slider -->
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="receipe-slider owl-carousel">
+                        {% if membro.foto_membro == null%}
+                            <img src="{% static 'img/bg-img/tomate_banner.jpg' %}">
+                        {% else %}
+                            <img src="{{membro.foto_membro.url}}" alt="">
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Receipe Content Area -->
+        <div class="receipe-content-area">
+            <div class="container">
+
+                <div class="row">
+                    <div class="col-12 col-md-8">
+                        <div class="receipe-headline my-5">
+                            <span>{{membro.data_membro}}</span>
+                            <h2>{{membro.nome_membro}}</h2>
+                            <div class="receipe-duration">
+                                <h6>Bando: {{membro.bando.nome_bando}}</h6>
+                                <h6>Função: {{membro.função}}</h6>
+                                <h6>Akuma no Mi: {{membro.akuma_no_mi.nome_fruta}}</h6>
+                            </div>
+                            </br>
+                            <a href="{% url 'deleta_membro' membro.id %}" class="btn btn-primary">Deletar</a>
+                            <a href="{% url 'edita_membro' membro.id %}" class="btn btn-primary">Editar</a>
+                        </div>
+                    </div>
+
+
+
+        {% include 'partials/footer.html'%}
+
+    {% endblock %}

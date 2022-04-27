@@ -1,0 +1,50 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block content%}
+    <!-- Preloader -->
+    <div id="preloader">
+        <i class="circle-preloader"></i>
+        <img src="{% static 'img/core-img/hamburger.png' %}" alt="">
+    </div>
+
+
+    {%include 'partials/menu.html'%}
+
+
+    <div class="receipe-post-area section-padding-80">
+
+        <!-- Receipe Slider -->
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="receipe-slider owl-carousel">
+                        {% if akuma.foto_akuma == null%}
+                            <img src="{% static 'img/bg-img/tomate_banner.jpg' %}">
+                        {% else %}
+                            <img src="{{akuma.foto_akuma.url}}" alt="">
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Receipe Content Area -->
+        <div class="receipe-content-area">
+            <div class="container">
+
+                <div class="row">
+                    <div class="col-12 col-md-8">
+                        <div class="receipe-headline my-5">
+                            <h2>{{akuma.nome_fruta}}</h2>
+                            <div class="receipe-duration">
+                                <h6>Categoria: {{akuma.categoria}}</h6>
+                            </div>
+                            </br>
+                            <a href="{% url 'deleta_akuma' akuma.id %}" class="btn btn-primary">Deletar</a>
+                            <a href="{% url 'edita_akuma' akuma.id %}" class="btn btn-primary">Editar</a>
+                        </div>
+                    </div>
+
+        {% include 'partials/footer.html'%}
+
+    {% endblock %}
